@@ -1,0 +1,29 @@
+To check connection
+>AT
+
+WLAN ist verbunden, wenn:
+*WIFI CONNECTED\r\n
+*WIFI GOT IP\r\n
+
+IP setzen:
+>AT+CIPSTA="192.168.178.42"
+*OK\r\n
+
+Single connection:
+>AT+CIPMUX=0
+*OK\r\n
+*
+Normal mode:
+>AT+CIPMODE=0
+*OK\r\n
+
+establish connection:
+>AT+CIPSTART="UDP","192.168.178.23",8087
+*OK\r\n
+
+Daten Senden:
+>AT+CIPSEND=11
+*OK\r\n
+*>
+>Hello World
+*[...]SEND OK\r\n
