@@ -1,3 +1,8 @@
 RTC: MCP7940M (R: MCP 7940M-IST)
 Schalter: R:ESE 11HS2
 uC: R:ATMEGA 64L8 TQ 
+
+~~~~  
+Wahlschalter: Pollin 420925
+Anschluss: 8-Pol-PSK (Reichelt: PSS 254/8G  und  PSK 254/8W)
+Verbindung: Je nach Schalterstellung A-1,B-7; A-2,B-8; ... ;A-6,B-12
