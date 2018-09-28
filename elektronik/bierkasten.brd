@@ -3609,6 +3609,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="TA1" library="switch_STE" package="TA93XX" value="KURZHUBTASTER" x="6.6" y="39.8" rot="R180">
 <attribute name="FARNELL" value="2292960" x="6.6" y="39.8" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="REICHELT" value="Taster 9314" x="6.6" y="39.8" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="WUERTH" value="430 182 043 816" x="6.6" y="39.8" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="U$15" library="misc_STE" package="ESP8266-POLLIN" value="ESP8266-POLLIN" x="14.8" y="18.4" rot="R90">
 <attribute name="NOORDER" value="" x="14.8" y="18.4" size="1.778" layer="27" rot="R90" display="off"/>
