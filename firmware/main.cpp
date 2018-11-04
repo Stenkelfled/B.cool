@@ -15,16 +15,14 @@ SlotManager slot_mgr;
 
 int main(void)
 {
-  /* Replace with your application code */
+  // Initialize
+
+
+
   while (1) 
   {
-    
+
   }
   return 0;
-}
-
-void init(void)
-{
-
 }
 

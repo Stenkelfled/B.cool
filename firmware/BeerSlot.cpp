@@ -23,7 +23,7 @@ BeerSlot::~BeerSlot()
  * @param switch_port The port-adress for the switch. Use e.g. &PORTA
  * @param switch_pin The pin number.
  */
-void BeerSlot::init(PORT_t * const switch_port, uint8_t const switch_pin)
+void BeerSlot::pinInit(PORT_t * const switch_port, uint8_t const switch_pin)
 {
   this->sSwitch.port = switch_port;
   this->sSwitch.pin = switch_pin;
@@ -37,3 +37,16 @@ void BeerSlot::init(PORT_t * const switch_port, uint8_t const switch_pin)
   this->sSwitch.port->INT0MASK |= (1<<this->sSwitch.pin);
 
 }
+
+/**
+ * @brief Set timer compare registers for LEDs
+ */
+void BeerSlot::ledInit(register16_t *red, register16_t *green)
+{
+  this->sLed.green = green;
+  this->sLed.red = red;
+
+  *this->sLed.green = 0;
+  *this->sLed.red = 0;
+}
+

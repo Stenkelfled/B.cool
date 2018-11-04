@@ -23,12 +23,18 @@ struct {
   uint8_t pin;
 } sSwitch;
 
+struct {
+  register16_t *green; //timer/counter register
+  register16_t *red; //timer/counter register
+} sLed;
+
 
 //functions
 public:
 	BeerSlot();
 	~BeerSlot();
-  void init(PORT_t * const switch_port, uint8_t const switch_pin);
+  void pinInit(PORT_t * const switch_port, uint8_t const switch_pin);
+  void ledInit(register16_t *red, register16_t *green);
   
   void switchActivated(void);
   void switchReleased(void);
