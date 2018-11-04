@@ -9,12 +9,22 @@
 #include "utils/macro_generation.h"
 #include "b_cool.h"
 
+#include "SlotManager.h"
+
+SlotManager slot_mgr;
 
 int main(void)
 {
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+  /* Replace with your application code */
+  while (1) 
+  {
+    
+  }
+  return 0;
+}
+
+void init(void)
+{
+
 }
 
