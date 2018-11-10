@@ -6,6 +6,8 @@
  */ 
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
+
 #include "utils/macro_generation.h"
 #include "b_cool.h"
 
@@ -16,7 +18,7 @@ SlotManager slot_mgr;
 int main(void)
 {
   // Initialize
-
+  // SlotManager initialized by Constructor
 
 
   while (1) 
@@ -25,4 +27,31 @@ int main(void)
   }
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

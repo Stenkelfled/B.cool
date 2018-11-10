@@ -43,10 +43,35 @@ void BeerSlot::pinInit(PORT_t * const switch_port, uint8_t const switch_pin)
  */
 void BeerSlot::ledInit(register16_t *red, register16_t *green)
 {
-  this->sLed.green = green;
   this->sLed.red = red;
-
-  *this->sLed.green = 0;
+  this->sLed.green = green;
+  
   *this->sLed.red = 0;
+  *this->sLed.green = 0;
 }
 
+/**
+ * @brief Set BeerSlotLed-Color
+ */
+void BeerSlot::ledSetColor(BeerSlot::eLedColor_t const color)
+{
+  switch (color)
+  {
+    case ledOff:
+      *this->sLed.red = 0;
+      *this->sLed.green = 0;
+      break;
+    case ledRed:
+      *this->sLed.red = LED_ON_VALUE;
+      *this->sLed.green = 0;
+      break;
+    case ledGreen:
+      *this->sLed.red = 0;
+      *this->sLed.green = LED_ON_VALUE;
+      break;
+    case ledYellow:
+      *this->sLed.red = LED_ON_VALUE;
+      *this->sLed.green = LED_ON_VALUE;
+      break;
+  }
+}

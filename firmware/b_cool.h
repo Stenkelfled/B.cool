@@ -25,6 +25,9 @@
 #define LED_PRESCALER               TC_CLKSEL_DIV1_gc
 #define LED_PERIOD                  (2^10)
 #define LED_WGMODE                  TC_WGMODE_DS_T_gc
+
+#define LED_ON_VALUE               LED_PERIOD //maximal value for LED compare register (highest brightness!)
+
 #define LED_SLOT0_RED               &TCC0_CCA
 #define LED_SLOT0_GREEN             &TCC0_CCB
 #define LED_SLOT1_RED               &TCC0_CCC
@@ -47,6 +50,9 @@
 #define LED_SLOT9_GREEN             &TCF0_CCB
 #define LED_SLOT10_RED              &TCF0_CCC
 #define LED_SLOT10_GREEN            &TCF0_CCD
+#if BEER_CAPACITY > 11
+  #error Please define the LEDs for the missing slots!
+#endif
 
 
 #define USER_SWITCH_PORT_NAME       A

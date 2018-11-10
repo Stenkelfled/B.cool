@@ -43,6 +43,9 @@ SlotManager::SlotManager()
   this->slots[8].ledInit(LED_SLOT8_RED, LED_SLOT8_GREEN);
   this->slots[9].ledInit(LED_SLOT9_RED, LED_SLOT9_GREEN);
   this->slots[10].ledInit(LED_SLOT10_RED, LED_SLOT10_GREEN);
+#if BEER_CAPACITY != 11
+  #error Plese add Initialization routines for missing LEDs!
+#endif
 
   TCC0_CTRLB = TC0_CCAEN_bm|TC0_CCBEN_bm|TC0_CCCEN_bm|TC0_CCDEN_bm | LED_WGMODE;
   TCC0_PER = LED_PERIOD;
@@ -80,3 +83,22 @@ SlotManager::SlotManager()
 SlotManager::~SlotManager()
 {
 } //~SlotManager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
