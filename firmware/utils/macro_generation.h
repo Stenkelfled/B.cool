@@ -109,6 +109,17 @@
 //!< wrap level for interrupts
 #define PMIC_xLVLEN_bm(lvl)		( 1<<(lvl-1) )
 
+//! \cond
+#define port_INTn_vect_PASTER(port,num)   PORT ## port ## _INT ## num ## _vect //!<\internal
+#define port_INTn_vect_EVAL(port,num)     port_INTn_vect_PASTER(port,num) //!<\internal
+//!\endcond
+//! generates a macro for pin-change interrupt vector
+#define port_INTn_vect(port,num)          port_INTn_vect_EVAL(port,num)
+
+#define PORTn_DIRSET_PASTER(port)          PORT ## port ## _OUTSET
+#define PORTn_DIRSET_EVAL(port)            PORTn_DIRSET_PASTER(port)
+#define PORTn_DIRSET(port)                 PORTn_DIRSET_EVAL(port)
+
 
 
 /**

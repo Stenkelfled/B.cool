@@ -20,6 +20,7 @@ int main(void)
   // Initialize
   // SlotManager initialized by Constructor
 
+  sei();
 
   while (1) 
   {

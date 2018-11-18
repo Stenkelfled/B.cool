@@ -40,6 +40,8 @@ void BeerSlot::pinInit(PORT_t * const switch_port, uint8_t const switch_pin)
 
 /**
  * @brief Set timer compare registers for LEDs
+ * @param red Timer-Compare register for red LED
+ * @param green Timer-Compare register for green LED
  */
 void BeerSlot::ledInit(register16_t *red, register16_t *green)
 {
