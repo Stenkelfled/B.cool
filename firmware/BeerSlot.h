@@ -13,37 +13,46 @@
 #include <avr/interrupt.h>
 
 #include "b_cool.h"
+#include "BeerTimer.h"
 
 class BeerSlot
 {
 //variables
 public:
-typedef enum {
-  ledOff
-  ,ledRed
-  ,ledGreen
-  ,ledYellow
-} eLedColor_t;
+  enum class eLedColor {
+     Off
+    ,Red
+    ,Green
+    ,Yellow
+  };
 protected:
 private:
-struct {
-  PORT_t *port; //base address
-  uint8_t pin;
-} sSwitch;
+  enum class eState : uint8_t
+  {
+    empty  = 0
+    ,full  = 1
+  };
 
-struct {
-  register16_t *red; //timer/counter compare register
-  register16_t *green; //timer/counter compare register
-} sLed;
+  struct {
+    PORT_t *port; //base address
+    uint8_t pin;
+    eState state;
+  } sSwitch;
 
+  struct {
+    register16_t *red; //timer/counter compare register
+    register16_t *green; //timer/counter compare register
+  } sLed;
+  
+  BeerTimer * timer;
 
 //functions
 public:
-	BeerSlot();
+	BeerSlot(BeerTimer * const timer);
 	~BeerSlot();
   void pinInit(PORT_t * const switch_port, uint8_t const switch_pin);
   void ledInit(register16_t *red, register16_t *green);
-  void ledSetColor(eLedColor_t color);
+  void update();
   
   void switchActivated(void);
   void switchReleased(void);
@@ -51,7 +60,7 @@ public:
 protected:
 private:
 	
-
+  void ledSetColor(eLedColor color);
 }; //BeerSlot
 
 #endif //__BEERSLOT_H__

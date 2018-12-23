@@ -116,9 +116,17 @@
 //! generates a macro for pin-change interrupt vector
 #define port_INTn_vect(port,num)          port_INTn_vect_EVAL(port,num)
 
-#define PORTn_DIRSET_PASTER(port)          PORT ## port ## _OUTSET
+#define PORTn_DIRSET_PASTER(port)          PORT ## port ## _DIRSET
 #define PORTn_DIRSET_EVAL(port)            PORTn_DIRSET_PASTER(port)
 #define PORTn_DIRSET(port)                 PORTn_DIRSET_EVAL(port)
+
+#define PORTn_OUTSET_PASTER(port)          PORT ## port ## _OUTSET
+#define PORTn_OUTSET_EVAL(port)            PORTn_OUTSET_PASTER(port)
+#define PORTn_OUTSET(port)                 PORTn_OUTSET_EVAL(port)
+
+#define PORTn_OUTCLR_PASTER(port)          PORT ## port ## _OUTCLR
+#define PORTn_OUTCLR_EVAL(port)            PORTn_OUTCLR_PASTER(port)
+#define PORTn_OUTCLR(port)                 PORTn_OUTCLR_EVAL(port)
 
 
 

@@ -9,6 +9,8 @@
 #ifndef __SLOTMANAGER_H__
 #define __SLOTMANAGER_H__
 
+#include "utils/macro_generation.h"
+
 #include "BeerSlot.h"
 #include "b_cool.h"
 
@@ -18,12 +20,13 @@ class SlotManager
 public:
 protected:
 private:
-BeerSlot slots[BEER_CAPACITY];
+  BeerSlot slots[BEER_CAPACITY];
 
+  BeerTimer * timer;
 
 //functions
 public:
-	SlotManager();
+	SlotManager(BeerTimer * const timer);
 	~SlotManager();
 protected:
 private:

@@ -5,14 +5,22 @@
 * Author: stenkelfled
 */
 
+#include <avr/interrupt.h>
 
 #include "SlotManager.h"
 
 // default constructor
-SlotManager::SlotManager()
+SlotManager::SlotManager(BeerTimer * const timer)
 {
+  this->timer = timer;
+  
+  for(uint8_t i=0; i<BEER_CAPACITY; i++)
+  {
+    this->slots[i] = BeerSlot(timer);
+  }
+  
   /////////////////////////////////////
-  //Beer slot switch
+  //#BeerSlotSwitchInit
   //group 0
   for(uint8_t pin_i = SLOT_GROUP_0_START; pin_i<=SLOT_GROUP_0_END; pin_i++)  
   {
@@ -30,7 +38,7 @@ SlotManager::SlotManager()
 #endif
 
   /////////////////////////////////////
-  // BeerSlot LED
+  //#BeerSlotLEDInit
 
   this->slots[0].ledInit(LED_SLOT0_RED, LED_SLOT0_GREEN);
   PORTn_DIRSET(LED_SLOT0_RED_PORT_NAME) = 1<<LED_SLOT0_RED_PIN;
@@ -106,8 +114,17 @@ SlotManager::~SlotManager()
 {
 } //~SlotManager
 
+//#BeerSlotSwitchISRs
 
+ISR(port_INTn_vect(SLOT_GROUP_0_PORT_NAME,0))
+{
+  
+}
 
+ISR(port_INTn_vect(SLOT_GROUP_1_PORT_NAME, 0))
+{
+  
+}
 
 
 

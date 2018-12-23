@@ -8,9 +8,10 @@
 
 #include "BeerSlot.h"
 
-// default constructor
-BeerSlot::BeerSlot()
+BeerSlot::BeerSlot(BeerTimer * timer)
 {
+  this->sSwitch.state = eState::empty;
+  this->timer = timer;
 } //BeerSlot
 
 // default destructor
@@ -30,6 +31,8 @@ void BeerSlot::pinInit(PORT_t * const switch_port, uint8_t const switch_pin)
     
   // init switch pin
   this->sSwitch.port->DIRCLR = (1<<this->sSwitch.pin);
+  
+  //Pullup and Interrupt on both edges
   *(&this->sSwitch.port->PIN0CTRL + this->sSwitch.pin) = PORT_OPC_PULLUP_gc | PORT_ISC_BOTHEDGES_gc;
     
   //set interrupts
@@ -55,25 +58,51 @@ void BeerSlot::ledInit(register16_t *red, register16_t *green)
 /**
  * @brief Set BeerSlotLed-Color
  */
-void BeerSlot::ledSetColor(BeerSlot::eLedColor_t const color)
+void BeerSlot::ledSetColor(BeerSlot::eLedColor const color)
 {
   switch (color)
   {
-    case ledOff:
+    case eLedColor::Off:
       *this->sLed.red = 0;
       *this->sLed.green = 0;
       break;
-    case ledRed:
+    case eLedColor::Red:
       *this->sLed.red = LED_ON_VALUE;
       *this->sLed.green = 0;
       break;
-    case ledGreen:
+    case eLedColor::Green:
       *this->sLed.red = 0;
       *this->sLed.green = LED_ON_VALUE;
       break;
-    case ledYellow:
+    case eLedColor::Yellow:
       *this->sLed.red = LED_ON_VALUE;
       *this->sLed.green = LED_ON_VALUE;
       break;
   }
 }
+
+void BeerSlot::update()
+{
+  eState const new_state = (this->sSwitch.port->IN & (1<<this->sSwitch.pin))?eState::full:eState::empty;
+  if(this->sSwitch.state != new_state)
+  {
+    this->sSwitch.state = new_state;
+    if(this->sSwitch.state == eState::full)
+    {
+      //the slot became filled -> get current time
+
+    }
+  }
+  
+  //update LED
+  if(this->sSwitch.state == eState::empty)
+  {
+    ledSetColor(eLedColor::Off);
+  }
+  else
+  {
+    //todo
+    ledSetColor(eLedColor::Yellow);
+  }
+}
+
