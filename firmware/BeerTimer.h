@@ -31,7 +31,7 @@ public:
   BeerTimer();
   void update();
   
-  void rfcOvfHdl();
+  void rtcOvfHdl();
   
 protected:
 private:

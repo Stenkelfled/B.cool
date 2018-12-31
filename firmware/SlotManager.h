@@ -9,6 +9,8 @@
 #ifndef __SLOTMANAGER_H__
 #define __SLOTMANAGER_H__
 
+#include <stdint.h>
+
 #include "utils/macro_generation.h"
 
 #include "BeerSlot.h"
@@ -28,6 +30,8 @@ private:
 public:
 	SlotManager(BeerTimer * const timer);
 	~SlotManager();
+  
+  void pinChgHdl(uint8_t const first_slot, uint8_t const last_slot);
 protected:
 private:
 	

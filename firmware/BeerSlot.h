@@ -48,15 +48,16 @@ private:
 
 //functions
 public:
-	BeerSlot(BeerTimer * const timer);
+	BeerSlot();
 	~BeerSlot();
+  void setup(BeerTimer * timer);
   void pinInit(PORT_t * const switch_port, uint8_t const switch_pin);
   void ledInit(register16_t *red, register16_t *green);
   void update();
   
-  void switchActivated(void);
-  void switchReleased(void);
-  void setLEDColor(void);
+//   void switchActivated(void);
+//   void switchReleased(void);
+//  void setLEDColor(void);
 protected:
 private:
 	

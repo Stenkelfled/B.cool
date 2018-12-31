@@ -8,16 +8,25 @@
 
 #include "BeerSlot.h"
 
-BeerSlot::BeerSlot(BeerTimer * timer)
+/**
+ * @brief Creates a new Beer Slot.
+ * For correct functionality, please initialize this slot after calling the constructor!
+ * (functions setup(__), pinInit(__), ledInit(__)
+ */
+BeerSlot::BeerSlot()//BeerTimer * timer)
 {
   this->sSwitch.state = eState::empty;
-  this->timer = timer;
 } //BeerSlot
 
 // default destructor
 BeerSlot::~BeerSlot()
 {
 } //~BeerSlot
+
+void BeerSlot::setup(BeerTimer * timer)
+{
+  this->timer = timer;
+}
 
 /**
  * @brief Initialize beer slot

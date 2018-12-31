@@ -17,7 +17,7 @@ BeerTimer::BeerTimer()
     //RTC is not running -> initialize RTC
     RTC_CNT = 0;
     RTC_CTRL = RTC_PRESCALER_DIV1024_gc | 0x01; //RTC Tick is 1 second
-    RTC_INTCTRL = RTC_OVFINTLVL_LO_gc;
+    RTC_INTCTRL = RTC_OVFINTLVL_MED_gc;
   }
   
   
@@ -38,7 +38,7 @@ void BeerTimer::update()
 /**
  * @brief RTC overflow Handler.
  */
-void BeerTimer::rfcOvfHdl()
+void BeerTimer::rtcOvfHdl()
 {
   this->my_time.split.extend++;
   this->update(); // get current RTC time  

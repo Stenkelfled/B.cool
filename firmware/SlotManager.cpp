@@ -16,7 +16,7 @@ SlotManager::SlotManager(BeerTimer * const timer)
   
   for(uint8_t i=0; i<BEER_CAPACITY; i++)
   {
-    this->slots[i] = BeerSlot(timer);
+    this->slots[i].setup(timer);
   }
   
   /////////////////////////////////////
@@ -114,16 +114,17 @@ SlotManager::~SlotManager()
 {
 } //~SlotManager
 
-//#BeerSlotSwitchISRs
-
-ISR(port_INTn_vect(SLOT_GROUP_0_PORT_NAME,0))
+/**
+ * @brief Register a pin change on one of the slots.
+ * @param first First possibly changed slot.
+ * @param last Last possibly changed slot.
+ */
+void SlotManager::pinChgHdl(uint8_t const first_slot, uint8_t const last_slot)
 {
-  
-}
-
-ISR(port_INTn_vect(SLOT_GROUP_1_PORT_NAME, 0))
-{
-  
+  for(uint8_t slot_i=first_slot; slot_i<=last_slot; slot_i++)
+  {
+    this->slots[slot_i].update();
+  }
 }
 
 
