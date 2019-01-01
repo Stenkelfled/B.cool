@@ -35,7 +35,7 @@ void BeerSlot::setup(BeerTimer * timer)
  */
 void BeerSlot::pinInit(PORT_t * const switch_port, uint8_t const switch_pin)
 {
-  this->fill_time.full = 0;
+  this->fill_time = (uint32_t)0;
   
   this->sSwitch.port = switch_port;
   this->sSwitch.pin = switch_pin;
@@ -111,8 +111,19 @@ void BeerSlot::update()
   }
   else
   {
-    //todo
-    ledSetColor(eLedColor::Yellow);
+    BeerTime time_diff = this->timer->getTime() - this->fill_time;
+    if(time_diff >= BEER_TIME_GREEN)
+    {
+      ledSetColor(eLedColor::Green);
+    }
+    else if(time_diff >= BEER_TIME_YELLOW)
+    {
+      ledSetColor(eLedColor::Yellow);
+    }
+    else
+    {
+      ledSetColor(eLedColor::Red);
+    }      
   }
 }
 

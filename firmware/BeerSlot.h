@@ -46,7 +46,7 @@ private:
   
   BeerTimer * timer;
   
-  BeerTimer::uTime fill_time;
+  BeerTime fill_time;
 
 //functions
 public:

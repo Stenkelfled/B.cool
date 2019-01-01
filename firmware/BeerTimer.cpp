@@ -13,7 +13,7 @@ BeerTimer::BeerTimer()
 {
   if( (RTC_CTRL&0x01) == 0)
   {
-    this->my_time.full = 0;
+    this->my_time = (uint32_t)0;
     //RTC is not running -> initialize RTC
     RTC_CNT = 0;
     RTC_CTRL = RTC_PRESCALER_DIV1024_gc | 0x01; //RTC Tick is 1 second
@@ -32,7 +32,7 @@ void BeerTimer::update()
   { //wait for RTC to finish sync
   }
   
-  this->my_time.split.rtc = RTC_CNT;
+  this->my_time = (uint16_t)RTC_CNT;
 }
 
 /**
@@ -40,7 +40,7 @@ void BeerTimer::update()
  */
 void BeerTimer::rtcOvfHdl()
 {
-  this->my_time.split.extend++;
+  this->my_time.incrExt();
   this->update(); // get current RTC time  
 }
 
@@ -48,7 +48,7 @@ void BeerTimer::rtcOvfHdl()
  * @brief Returns the current time
  * @retval The current time
  */
-BeerTimer::uTime BeerTimer::getTime() const
+BeerTime BeerTimer::getTime() const
 {
   return this->my_time;
 }

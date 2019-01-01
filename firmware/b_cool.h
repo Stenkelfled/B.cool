@@ -7,6 +7,10 @@
 #ifndef _B_COOL_H
 #define _B_COOL_H
 
+//Cooling times (how long does it take to cool the beer? Numbers in seconds)
+#define BEER_TIME_YELLOW            10*60
+#define BEER_TIME_GREEN             15*60
+
 //Beer slot definition
 #define BEER_CAPACITY               (11)
 #define SLOT_GROUP_COUNT            (2) //number of slot groups (aka how many ports are in use for the beer-recognition-switches)
