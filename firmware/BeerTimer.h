@@ -30,12 +30,12 @@ public:
   
   BeerTimer();
   void update();
+  uTime getTime() const;
   
   void rtcOvfHdl();
   
 protected:
 private:
-  static uTime global_time;
   uTime my_time;
   
 };

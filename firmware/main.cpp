@@ -14,6 +14,7 @@
 #include "b_cool.h"
 
 #include "SlotManager.h"
+#include "power.h"
 
 BeerTimer beer_timer;
 SlotManager slot_mgr(&beer_timer);
@@ -25,9 +26,10 @@ int main(void)
   // Initialize
   // RTC initialize by constructor
   // SlotManager initialized by Constructor
+  power::init();
   
   //Interrupts
-  PMIC_CTRL = PMIC_LOLVLEN_bm | PMIC_MEDLVLEN_bm;
+  PMIC_CTRL = PMIC_LOLVLEN_bm | PMIC_MEDLVLEN_bm | PMIC_HILVLEN_bm;
 
   sei();
 
@@ -47,6 +49,10 @@ int main(void)
 //     {
 //       PORTn_OUTCLR(LED_SLOT0_GREEN_PORT_NAME) = (1<<LED_SLOT0_GREEN_PIN);
 //     }
+    if(!light::isOn())
+    {
+      power::sleep();
+    }
   }
   return 0;
 }

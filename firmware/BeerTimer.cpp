@@ -43,3 +43,12 @@ void BeerTimer::rtcOvfHdl()
   this->my_time.split.extend++;
   this->update(); // get current RTC time  
 }
+
+/**
+ * @brief Returns the current time
+ * @retval The current time
+ */
+BeerTimer::uTime BeerTimer::getTime() const
+{
+  return this->my_time;
+}

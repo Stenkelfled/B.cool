@@ -35,6 +35,8 @@ void BeerSlot::setup(BeerTimer * timer)
  */
 void BeerSlot::pinInit(PORT_t * const switch_port, uint8_t const switch_pin)
 {
+  this->fill_time.full = 0;
+  
   this->sSwitch.port = switch_port;
   this->sSwitch.pin = switch_pin;
     
@@ -98,8 +100,7 @@ void BeerSlot::update()
     this->sSwitch.state = new_state;
     if(this->sSwitch.state == eState::full)
     {
-      //the slot became filled -> get current time
-
+      this->fill_time = this->timer->getTime();
     }
   }
   

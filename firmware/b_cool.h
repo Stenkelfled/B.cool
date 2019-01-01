@@ -105,13 +105,11 @@
 
 #define NLIGHT_ON_PORT_NAME         H
 #define NLIGHT_ON_PORT              PORT_(NLIGHT_ON_PORT_NAME)
-#define NLIGHT_ON_PIN_NR            2
-#define NLIGNT_ON_PIN               PIN(NLIGHT_ON_PIN_NR)
+#define NLIGHT_ON_PIN               2
 
 #define WIFI_ENABLE_PORT_NAME       K       
 #define WIFI_ENABLE_PORT            PORT_(WIFI_ENABLE_PORT_NAME)
-#define WIFI_ENABLE_PIN_NR          6
-#define WIFI_ENABLE_PIN             PIN(WIFI_ENABLE_PIN_NR)
+#define WIFI_ENABLE_PIN             6
 #define WIFI_USART_NAME             USARTD1
 
 #endif

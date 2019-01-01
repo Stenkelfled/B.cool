@@ -45,6 +45,8 @@ private:
   } sLed;
   
   BeerTimer * timer;
+  
+  BeerTimer::uTime fill_time;
 
 //functions
 public:

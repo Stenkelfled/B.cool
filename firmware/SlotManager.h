@@ -31,6 +31,9 @@ public:
 	SlotManager(BeerTimer * const timer);
 	~SlotManager();
   
+  static void enableLeds();
+  static void disableLeds();
+  
   void pinChgHdl(uint8_t const first_slot, uint8_t const last_slot);
 protected:
 private:

@@ -90,8 +90,6 @@
 //!\endcond
 #define PORT_(i)		_PORT_(i) //!< generates a macro for access to a port
 
-#define PIN(n)			(1<<n) //!< generates a macro to access a pin by its number
-
 //! \cond
 #define _FIRST(f,s)		f
 #define FIRST(foo)		_FIRST(foo)
@@ -120,6 +118,10 @@
 #define PORTn_DIRSET_EVAL(port)            PORTn_DIRSET_PASTER(port)
 #define PORTn_DIRSET(port)                 PORTn_DIRSET_EVAL(port)
 
+#define PORTn_DIRCLR_PASTER(port)          PORT ## port ## _DIRCLR
+#define PORTn_DIRCLR_EVAL(port)            PORTn_DIRCLR_PASTER(port)
+#define PORTn_DIRCLR(port)                 PORTn_DIRCLR_EVAL(port)
+
 #define PORTn_OUTSET_PASTER(port)          PORT ## port ## _OUTSET
 #define PORTn_OUTSET_EVAL(port)            PORTn_OUTSET_PASTER(port)
 #define PORTn_OUTSET(port)                 PORTn_OUTSET_EVAL(port)
@@ -128,7 +130,13 @@
 #define PORTn_OUTCLR_EVAL(port)            PORTn_OUTCLR_PASTER(port)
 #define PORTn_OUTCLR(port)                 PORTn_OUTCLR_EVAL(port)
 
+#define PORTn_func_PASTER(port,func)       PORT ## port ## _ ## func
+#define PORTn_func_EVAL(port,func)         PORTn_func_PASTER(port,func)
+#define PORTn_func(port,func)              PORTn_func_EVAL(port,func)
 
+#define PINnCTRL_PASTER(pin)               PIN ## pin ## CTRL
+#define PINnCTRL_EVAL(pin)                 PINnCTRL_PASTER(pin)
+#define PINnCTRL(pin)                      PINnCTRL_EVAL(pin)
 
 /**
  * \name Macros for Event System settings
