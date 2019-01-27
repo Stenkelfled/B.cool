@@ -27,7 +27,7 @@
 
 //Beer LED definition
 #define LED_PRESCALER               TC_CLKSEL_DIV1_gc
-#define LED_PERIOD                  (2^10)
+#define LED_PERIOD                  (1<<10) //pow(2,10)
 #define LED_WGMODE                  TC_WGMODE_DS_T_gc
 
 #define LED_ON_VALUE               LED_PERIOD //maximal value for LED compare register (highest brightness!)
@@ -80,24 +80,24 @@
 #define LED_SLOT7_GREEN             &TCE0_CCD
 #define LED_SLOT7_GREEN_PORT_NAME   E
 #define LED_SLOT7_GREEN_PIN         3
-#define LED_SLOT8_RED               &TCE1_CCA
-#define LED_SLOT8_RED_PORT_NAME     E
-#define LED_SLOT8_RED_PIN           4
-#define LED_SLOT8_GREEN             &TCE1_CCB
-#define LED_SLOT8_GREEN_PORT_NAME   E
-#define LED_SLOT8_GREEN_PIN         5
+#define LED_SLOT10_RED               &TCE1_CCA
+#define LED_SLOT10_RED_PORT_NAME     E
+#define LED_SLOT10_RED_PIN           4
+#define LED_SLOT10_GREEN             &TCE1_CCB
+#define LED_SLOT10_GREEN_PORT_NAME   E
+#define LED_SLOT10_GREEN_PIN         5
 #define LED_SLOT9_RED               &TCF0_CCA
 #define LED_SLOT9_RED_PORT_NAME     F
 #define LED_SLOT9_RED_PIN           0
 #define LED_SLOT9_GREEN             &TCF0_CCB
 #define LED_SLOT9_GREEN_PORT_NAME   F
 #define LED_SLOT9_GREEN_PIN         1
-#define LED_SLOT10_RED              &TCF0_CCC
-#define LED_SLOT10_RED_PORT_NAME     F
-#define LED_SLOT10_RED_PIN           2
-#define LED_SLOT10_GREEN            &TCF0_CCD
-#define LED_SLOT10_GREEN_PORT_NAME   F
-#define LED_SLOT10_GREEN_PIN         3
+#define LED_SLOT8_RED              &TCF0_CCC
+#define LED_SLOT8_RED_PORT_NAME     F
+#define LED_SLOT8_RED_PIN           2
+#define LED_SLOT8_GREEN            &TCF0_CCD
+#define LED_SLOT8_GREEN_PORT_NAME   F
+#define LED_SLOT8_GREEN_PIN         3
 #if BEER_CAPACITY > 11
   #error Please define the LEDs for the missing slots!
 #endif

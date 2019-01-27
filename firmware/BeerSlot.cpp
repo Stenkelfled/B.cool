@@ -94,7 +94,7 @@ void BeerSlot::ledSetColor(BeerSlot::eLedColor const color)
 
 void BeerSlot::update()
 {
-  eState const new_state = (this->sSwitch.port->IN & (1<<this->sSwitch.pin))?eState::full:eState::empty;
+  eState const new_state = (this->sSwitch.port->IN & (1<<this->sSwitch.pin))?eState::empty:eState::full; //pin is LOW-active
   if(this->sSwitch.state != new_state)
   {
     this->sSwitch.state = new_state;
@@ -112,6 +112,8 @@ void BeerSlot::update()
   else
   {
     BeerTime time_diff = this->timer->getTime() - this->fill_time;
+    ledSetColor(eLedColor::Green);
+    /*
     if(time_diff >= BEER_TIME_GREEN)
     {
       ledSetColor(eLedColor::Green);
@@ -123,7 +125,7 @@ void BeerSlot::update()
     else
     {
       ledSetColor(eLedColor::Red);
-    }      
+    }      */
   }
 }
 

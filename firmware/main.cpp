@@ -26,7 +26,7 @@ int main(void)
   // Initialize
   // RTC initialize by constructor
   // SlotManager initialized by Constructor
-  power::init();
+  //power::init();
   
   //Interrupts
   PMIC_CTRL = PMIC_LOLVLEN_bm | PMIC_MEDLVLEN_bm | PMIC_HILVLEN_bm;
@@ -49,10 +49,10 @@ int main(void)
 //     {
 //       PORTn_OUTCLR(LED_SLOT0_GREEN_PORT_NAME) = (1<<LED_SLOT0_GREEN_PIN);
 //     }
-    if(!light::isOn())
+    /*if(!light::isOn())
     {
       power::sleep();
-    }
+    }*/
   }
   return 0;
 }
@@ -64,7 +64,7 @@ int main(void)
 //RTC overflow -> update extended variable
 ISR(RTC_OVF_vect)
 {
-  beer_timer.rtcOvfHdl();
+  //beer_timer.rtcOvfHdl();
 }
 
 
