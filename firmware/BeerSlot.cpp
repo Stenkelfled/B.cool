@@ -112,8 +112,6 @@ void BeerSlot::update()
   else
   {
     BeerTime time_diff = this->timer->getTime() - this->fill_time;
-    ledSetColor(eLedColor::Green);
-    /*
     if(time_diff >= BEER_TIME_GREEN)
     {
       ledSetColor(eLedColor::Green);
@@ -125,7 +123,7 @@ void BeerSlot::update()
     else
     {
       ledSetColor(eLedColor::Red);
-    }      */
+    }
   }
 }
 

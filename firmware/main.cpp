@@ -32,23 +32,9 @@ int main(void)
   PMIC_CTRL = PMIC_LOLVLEN_bm | PMIC_MEDLVLEN_bm | PMIC_HILVLEN_bm;
 
   sei();
-
-//   PORTn_DIRSET(LED_SLOT0_GREEN_PORT_NAME) = (1<<LED_SLOT0_GREEN_PIN) | (1<<LED_SLOT0_RED_PIN);
-//   PORTn_OUTCLR(LED_SLOT0_GREEN_PORT_NAME) = (1<<LED_SLOT0_GREEN_PIN) | (1<<LED_SLOT0_RED_PIN);
-//   
-//   PORTJ_DIRCLR = 1<<SLOT_GROUP_0_START;
-//   PORTJ_PIN0CTRL = PORT_OPC_PULLUP_gc;
   
   while (1)
   {
-//     if(PORTJ_IN & (1<<0))
-//     {
-//       PORTn_OUTSET(LED_SLOT0_GREEN_PORT_NAME) = (1<<LED_SLOT0_GREEN_PIN);
-//     }
-//     else
-//     {
-//       PORTn_OUTCLR(LED_SLOT0_GREEN_PORT_NAME) = (1<<LED_SLOT0_GREEN_PIN);
-//     }
     /*if(!light::isOn())
     {
       power::sleep();
@@ -64,7 +50,7 @@ int main(void)
 //RTC overflow -> update extended variable
 ISR(RTC_OVF_vect)
 {
-  //beer_timer.rtcOvfHdl();
+  beer_timer.rtcOvfHdl();
 }
 
 

@@ -29,9 +29,17 @@ private:
   }  my_time;
   
 public:
+  BeerTime()
+  {
+    this->my_time.full = 0;
+  }
+  BeerTime(uint32_t start_time)
+  {
+    this->my_time.full = start_time;
+  }
   BeerTime& operator=(const uint16_t& new_time)
   {
-    this->my_time.split.extend = 0;
+    //this->my_time.split.extend = 0;
     this->my_time.split.rtc = new_time;
     return *this;
   }
@@ -82,7 +90,7 @@ public:
   }
   friend BeerTime operator-(BeerTime lhs, const BeerTime& rhs)
   {
-    lhs += rhs;
+    lhs -= rhs;
     return lhs;
   }
   inline bool operator<(const BeerTime& rhs)
@@ -117,13 +125,13 @@ class BeerTimer
 public:
   BeerTimer();
   void update();
-  BeerTime getTime() const;
+  BeerTime getTime();
   
   void rtcOvfHdl();
   
 protected:
 private:
-  BeerTime my_time;
+  BeerTime mtime;
   
 };
 
