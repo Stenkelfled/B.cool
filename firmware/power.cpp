@@ -46,7 +46,7 @@ void power::sleep_end()
 {
   //re-enable all outputs
   SlotManager::enableLeds();
-  //SLEEP_CTRL &= ~SLEEP_SEN_bm;
+  SLEEP_CTRL &= ~SLEEP_SEN_bm;
 }
 
 /**
@@ -56,9 +56,9 @@ void power::sleep()
 {
   //disable all outputs
   SlotManager::disableLeds();
-  //SLEEP_CTRL |= SLEEP_SEN_bm;
-  //asm ("sleep");
-  _delay_ms(300);
+  SLEEP_CTRL |= SLEEP_SEN_bm;
+  asm ("sleep");
+  //_delay_ms(300);
   sleep_end();
 }
 
@@ -102,9 +102,7 @@ void light::clearOn()
   PORTn_func(NLIGHT_ON_PORT_NAME,DIRCLR) = 1<<NLIGHT_ON_PIN;
 }
 
-/*
 ISR(port_INTn_vect(NLIGHT_ON_PORT_NAME,0))
 {
   
 }
-*/
