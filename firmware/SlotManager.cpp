@@ -163,6 +163,17 @@ void SlotManager::pinChgHdl(uint8_t const first_slot, uint8_t const last_slot)
   }
 }
 
+/**
+ * @brief Updates ALL Beer slots
+ */
+void SlotManager::updateAll()
+{
+  for(uint8_t slot_i=0; slot_i<BEER_CAPACITY; slot_i++)
+  {
+    this->slots[slot_i].update();
+  }
+}
+
 
 
 

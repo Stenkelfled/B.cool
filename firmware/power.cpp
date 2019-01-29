@@ -7,6 +7,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 #include "utils/macro_generation.h"
 #include "b_cool.h"
@@ -27,7 +28,7 @@ void power::init()
   uint8_t pr_val = PR_ADC_bm | PR_DAC_bm | PR_AC_bm;
   PR_PRPA = pr_val;
   PR_PRPB = pr_val;
-  pr_val = PR_TWI_bm | PR_USART0_bm | PR_SPI_bm | PR_HIRES_bm;
+  pr_val = PR_TWI_bm | PR_USART0_bm | PR_SPI_bm;
   PR_PRPD = pr_val; //port D uses USART1 for WIFI module
   pr_val |= PR_USART1_bm;
   PR_PRPC = pr_val;
@@ -45,7 +46,7 @@ void power::sleep_end()
 {
   //re-enable all outputs
   SlotManager::enableLeds();
-  SLEEP_CTRL &= ~SLEEP_SEN_bm;
+  //SLEEP_CTRL &= ~SLEEP_SEN_bm;
 }
 
 /**
@@ -55,8 +56,9 @@ void power::sleep()
 {
   //disable all outputs
   SlotManager::disableLeds();
-  SLEEP_CTRL |= SLEEP_SEN_bm;
-  asm ("sleep");
+  //SLEEP_CTRL |= SLEEP_SEN_bm;
+  //asm ("sleep");
+  _delay_ms(300);
   sleep_end();
 }
 
@@ -100,7 +102,9 @@ void light::clearOn()
   PORTn_func(NLIGHT_ON_PORT_NAME,DIRCLR) = 1<<NLIGHT_ON_PIN;
 }
 
+/*
 ISR(port_INTn_vect(NLIGHT_ON_PORT_NAME,0))
 {
   
 }
+*/

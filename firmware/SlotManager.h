@@ -35,6 +35,7 @@ public:
   static void disableLeds();
   
   void pinChgHdl(uint8_t const first_slot, uint8_t const last_slot);
+  void updateAll();
 protected:
 private:
 	
