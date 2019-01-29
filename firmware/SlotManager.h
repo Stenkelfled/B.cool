@@ -38,6 +38,7 @@ public:
   void updateAll();
 protected:
 private:
+  BeerSlot::user_t getUserState();
 	
 
 }; //SlotManager

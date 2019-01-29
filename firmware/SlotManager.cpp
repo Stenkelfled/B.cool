@@ -83,6 +83,18 @@ SlotManager::SlotManager(BeerTimer * const timer)
   TCF0_PER = LED_PERIOD;
   TCF0_CTRLA = LED_PRESCALER;
 
+  /////////////////////////////////////
+  //#UserSwitch
+  // init switch pins
+  PORTn_func(USER_SWITCH_PORT_NAME, DIRCLR) = USER_SWITCH_MASK_ALL; //mask Bits 0...(USER_SWITCH_COUNT-1)
+    
+  //Interrupt on both edges
+  PORTCFG_MPCMASK = USER_SWITCH_MASK_ALL; //use Multi-pin Configuration Mask register
+  PORTn_func(USER_SWITCH_PORT_NAME, PIN0CTRL) = PORT_ISC_BOTHEDGES_gc | PORT_OPC_PULLDOWN_gc;
+    
+  //set interrupts
+  PORTn_func(USER_SWITCH_PORT_NAME, INTCTRL) = PORT_INT0LVL_LO_gc;
+  PORTn_func(USER_SWITCH_PORT_NAME, INT0MASK) = USER_SWITCH_MASK_ALL;
 
 
 } //SlotManager
@@ -119,6 +131,9 @@ void SlotManager::enableLeds()
   PORTn_DIRSET(LED_SLOT9_GREEN_PORT_NAME) = 1<<LED_SLOT9_GREEN_PIN;
   PORTn_DIRSET(LED_SLOT10_RED_PORT_NAME) = 1<<LED_SLOT10_RED_PIN;
   PORTn_DIRSET(LED_SLOT10_GREEN_PORT_NAME) = 1<<LED_SLOT10_GREEN_PIN;
+  
+  PORTCFG_MPCMASK = USER_SWITCH_MASK_ALL; //use Multi-pin Configuration Mask register
+  PORTn_func(USER_SWITCH_PORT_NAME, PIN0CTRL) = PORT_ISC_BOTHEDGES_gc | PORT_OPC_PULLDOWN_gc;
 }
 
 /**
@@ -148,6 +163,9 @@ void SlotManager::disableLeds()
   PORTn_DIRCLR(LED_SLOT9_GREEN_PORT_NAME) = 1<<LED_SLOT9_GREEN_PIN;
   PORTn_DIRCLR(LED_SLOT10_RED_PORT_NAME) = 1<<LED_SLOT10_RED_PIN;
   PORTn_DIRCLR(LED_SLOT10_GREEN_PORT_NAME) = 1<<LED_SLOT10_GREEN_PIN;
+  
+  PORTCFG_MPCMASK = USER_SWITCH_MASK_ALL; //use Multi-pin Configuration Mask register
+  PORTn_func(USER_SWITCH_PORT_NAME, PIN0CTRL) = PORT_ISC_BOTHEDGES_gc;
 }
 
 /**
@@ -159,7 +177,7 @@ void SlotManager::pinChgHdl(uint8_t const first_slot, uint8_t const last_slot)
 {
   for(uint8_t slot_i=first_slot; slot_i<=last_slot; slot_i++)
   {
-    this->slots[slot_i].update();
+    this->slots[slot_i].update(getUserState());
   }
 }
 
@@ -170,8 +188,17 @@ void SlotManager::updateAll()
 {
   for(uint8_t slot_i=0; slot_i<BEER_CAPACITY; slot_i++)
   {
-    this->slots[slot_i].update();
+    this->slots[slot_i].update(getUserState());
   }
+}
+
+/**
+ * @brief Reads the state of the user switch
+ * @return The current user switch configuration
+ */
+BeerSlot::user_t SlotManager::getUserState()
+{
+  return ( PORTn_func(USER_SWITCH_PORT_NAME,IN) & USER_SWITCH_MASK_ALL );
 }
 
 

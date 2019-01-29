@@ -16,6 +16,7 @@
 BeerSlot::BeerSlot()//BeerTimer * timer)
 {
   this->sSwitch.state = eState::empty;
+  this->user = USER_NOUSER;
 } //BeerSlot
 
 // default destructor
@@ -92,7 +93,7 @@ void BeerSlot::ledSetColor(BeerSlot::eLedColor const color)
   }
 }
 
-void BeerSlot::update()
+void BeerSlot::update(user_t user_state)
 {
   eState const new_state = (this->sSwitch.port->IN & (1<<this->sSwitch.pin))?eState::empty:eState::full; //pin is LOW-active
   if(this->sSwitch.state != new_state)
@@ -101,11 +102,18 @@ void BeerSlot::update()
     if(this->sSwitch.state == eState::full)
     {
       this->fill_time = this->timer->getTime();
+      this->user = user_state;
+    }
+    else
+    {
+      this->user = USER_NOUSER;
     }
   }
   
   //update LED
-  if(this->sSwitch.state == eState::empty)
+  if( (this->sSwitch.state == eState::empty)
+    ||(user_state != this->user)
+    )
   {
     ledSetColor(eLedColor::Off);
   }

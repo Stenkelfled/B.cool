@@ -7,6 +7,8 @@
 #ifndef _B_COOL_H
 #define _B_COOL_H
 
+#define LIGHT_ALWAYS_ON
+
 //Cooling times (how long does it take to cool the beer? Numbers in seconds)
 #define BEER_TIME_YELLOW            20//10*60
 #define BEER_TIME_GREEN             45//15*60
@@ -107,6 +109,7 @@
 #define USER_SWITCH_PORT_NAME       A
 #define USER_SWITCH_PORT            PORT_(USER_SWITCH_PORT_NAME)
 #define USER_SWITCH_COUNT           (6)
+#define USER_SWITCH_MASK_ALL        ((1<<(USER_SWITCH_COUNT-1)) - 1)
 
 #define NLIGHT_ON_PORT_NAME         H
 #define NLIGHT_ON_PORT              PORT_(NLIGHT_ON_PORT_NAME)

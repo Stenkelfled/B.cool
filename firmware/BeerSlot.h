@@ -15,6 +15,8 @@
 #include "b_cool.h"
 #include "BeerTimer.h"
 
+#define USER_NOUSER   0
+
 class BeerSlot
 {
 //variables
@@ -25,6 +27,7 @@ public:
     ,Green
     ,Yellow
   };
+  typedef uint8_t user_t;
 protected:
 private:
   enum class eState : uint8_t
@@ -38,6 +41,8 @@ private:
     uint8_t pin;
     eState state;
   } sSwitch;
+  
+  user_t user; //bitmask of the switch state
 
   struct {
     register16_t *red; //timer/counter compare register
@@ -55,7 +60,7 @@ public:
   void setup(BeerTimer * timer);
   void pinInit(PORT_t * const switch_port, uint8_t const switch_pin);
   void ledInit(register16_t *red, register16_t *green);
-  void update();
+  void update(user_t user_state);
   
 //   void switchActivated(void);
 //   void switchReleased(void);

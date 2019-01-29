@@ -80,7 +80,12 @@ void light::init()
  */
 uint8_t light::isOn()
 {
+#ifndef LIGHT_ALWAYS_ON
   return !(PORTn_func(NLIGHT_ON_PORT_NAME,IN) & (1<<NLIGHT_ON_PIN));
+#else
+  #warning Override: Light is always on!
+  return true;
+#endif
 }
 
 /**
@@ -102,7 +107,9 @@ void light::clearOn()
   PORTn_func(NLIGHT_ON_PORT_NAME,DIRCLR) = 1<<NLIGHT_ON_PIN;
 }
 
+#ifndef LIGHT_ALWAYS_ON
 ISR(port_INTn_vect(NLIGHT_ON_PORT_NAME,0))
 {
   
 }
+#endif
