@@ -3699,6 +3699,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="REICHELT" value="TAJ 3528 10/20" x="3.4" y="39" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="SPICEPREFIX" value="C" x="3.4" y="39" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
+<element name="R29" library="rcl_STE" package="R0603" package3d_urn="urn:adsk.eagle:package:23555/2" value="10k" x="1.4" y="-11.2">
+<attribute name="REICHELT" value="RND 0603 1 1,0M" x="1.4" y="-11.2" size="1.778" layer="27" display="off"/>
+<attribute name="SPICEPREFIX" value="R" x="1.4" y="-11.2" size="1.778" layer="27" display="off"/>
+</element>
 </elements>
 <signals>
 <signal name="+3V3">
@@ -3721,7 +3725,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="FERRITE1" pad="1"/>
 <contactref element="U$2" pad="4"/>
 <contactref element="R24" pad="2"/>
-<contactref element="U$3" pad="C"/>
 <wire x1="29.75" y1="24.6" x2="32.05" y2="24.6" width="0.3" layer="16"/>
 <wire x1="32.05" y1="24.6" x2="33.05" y2="25.6" width="0.3" layer="16"/>
 <wire x1="29.75" y1="19.6" x2="32.15" y2="19.6" width="0.3" layer="16"/>
@@ -3784,7 +3787,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="26.15" y1="11.55" x2="25.4" y2="11.55" width="0.2" layer="16"/>
 <wire x1="26.3976" y1="11.7976" x2="26.15" y2="11.55" width="0.2" layer="16"/>
 <wire x1="27.2" y1="11.55" x2="28.78" y2="11.55" width="0.2" layer="16"/>
-<wire x1="28.78" y1="11.55" x2="29.13" y2="11.2" width="0.2" layer="16"/>
 <wire x1="10.625" y1="32.2" x2="10.45" y2="32.375" width="1" layer="16"/>
 <wire x1="10.45" y1="32.375" x2="10.45" y2="34.4" width="1" layer="16"/>
 <wire x1="26.8" y1="25.2" x2="26.8" y2="24" width="0.4" layer="16"/>
@@ -3878,6 +3880,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="26.14" y1="44.73" x2="26.14" y2="42.0406" width="0.2" layer="1"/>
 <wire x1="26.14" y1="42.0406" x2="26.14" y2="41.74" width="0.2" layer="1"/>
 <wire x1="24.6" y1="40.2" x2="30.8" y2="40.2" width="0.2" layer="1"/>
+<contactref element="U$3" pad="C"/>
+<wire x1="15" y1="36.2" x2="14.55" y2="39" width="0" layer="19" extent="16-16"/>
+<wire x1="21.8" y1="33.65" x2="20.4" y2="36.8" width="0" layer="19" extent="1-16"/>
+<wire x1="29.13" y1="11.2" x2="28.78" y2="11.55" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="GND">
 <contactref element="U$1" pad="3"/>
@@ -4555,15 +4561,14 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <signal name="N$23">
 <contactref element="U$3" pad="E"/>
 <contactref element="R23" pad="2"/>
-<contactref element="Q1" pad="2"/>
-<wire x1="32" y1="12.695" x2="29.255" y2="12.695" width="0.2" layer="16"/>
 <wire x1="29.255" y1="12.695" x2="29.2" y2="12.75" width="0.2" layer="16"/>
-<wire x1="32" y1="12.695" x2="32" y2="11.53" width="0.2" layer="16"/>
 <wire x1="32" y1="11.53" x2="31.67" y2="11.2" width="0.2" layer="16"/>
+<contactref element="R29" pad="2"/>
+<wire x1="29.255" y1="12.695" x2="31.67" y2="11.2" width="0" layer="19" extent="16-16"/>
+<wire x1="2.25" y1="-11.2" x2="29.2" y2="12.75" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="!LIGHT_ON">
 <contactref element="U$1" pad="57"/>
-<contactref element="Q1" pad="3"/>
 <contactref element="R24" pad="1"/>
 <wire x1="25" y1="14.85" x2="25" y2="13.65" width="0.2" layer="16"/>
 <wire x1="25" y1="13.65" x2="25.4" y2="13.25" width="0.2" layer="16"/>
@@ -4579,7 +4584,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="30.3874" y1="16.2126" x2="30.4024" y2="16.1976" width="0.2" layer="16"/>
 <wire x1="30.4024" y1="16.1976" x2="31.6724" y2="16.1976" width="0.2" layer="16"/>
 <wire x1="27.0606" y1="16.7794" x2="28.32865" y2="16.7794" width="0.2" layer="16"/>
-<wire x1="31.6724" y1="16.1976" x2="33.27" y2="14.6" width="0.2" layer="16"/>
 </signal>
 <signal name="SWITCH_0">
 <contactref element="U$4" pad="P$2"/>
@@ -4955,6 +4959,14 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="2.425" y1="40.625" x2="3.4" y2="40.625" width="1" layer="16"/>
 <wire x1="1.8" y1="33.53" x2="1.8" y2="40" width="1" layer="16"/>
 <wire x1="2.425" y1="40.625" x2="1.8" y2="40" width="1" layer="16"/>
+</signal>
+<signal name="N$27">
+<contactref element="Q1" pad="3"/>
+</signal>
+<signal name="N$28">
+<contactref element="Q1" pad="2"/>
+<contactref element="R29" pad="1"/>
+<wire x1="0.55" y1="-11.2" x2="32" y2="12.695" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
