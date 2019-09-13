@@ -7,11 +7,11 @@
 #ifndef _B_COOL_H
 #define _B_COOL_H
 
-#define LIGHT_ALWAYS_ON
+//#define LIGHT_ALWAYS_ON
 
 //Cooling times (how long does it take to cool the beer? Numbers in seconds)
-#define BEER_TIME_YELLOW            20//10*60
-#define BEER_TIME_GREEN             45//15*60
+#define BEER_TIME_YELLOW            15*60
+#define BEER_TIME_GREEN             20*60
 
 //Beer slot definition
 #define BEER_CAPACITY               (11)
@@ -32,8 +32,8 @@
 #define LED_PERIOD                  (1<<10) //pow(2,10)
 #define LED_WGMODE                  TC_WGMODE_DS_T_gc
 
-#define LED_ON_VALUE               (LED_PERIOD) //maximal value for LED compare register (highest brightness!)
-//#define LED_ON_VALUE               (1<<5)
+//#define LED_ON_VALUE               (LED_PERIOD) //maximal value for LED compare register (highest brightness!)
+#define LED_ON_VALUE               (1<<7)
 
 #define LED_SLOT0_RED               &TCC0_CCA
 #define LED_SLOT0_RED_PORT_NAME     C

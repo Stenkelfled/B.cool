@@ -199,6 +199,15 @@
       <SubType>compile</SubType>
       <Link>b_cool.h</Link>
     </Compile>
+    <Compile Include="RingBuffer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="RingBuffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="usart.cpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -212,6 +221,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SlotManager.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="usart.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="utils\macro_generation.h">
